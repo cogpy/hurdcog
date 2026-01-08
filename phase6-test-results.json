@@ -32,8 +32,8 @@
     },
     {
       "test": "test-patterns.scm",
-      "status": "WARNING",
-      "message": "Unbalanced parentheses: 529 open, 530 close"
+      "status": "PASSED",
+      "message": "Valid Scheme structure"
     }
   ],
   "integration_tests": [
@@ -52,8 +52,8 @@
     {
       "test": "phase3-full-integration.scm",
       "description": "Phase 3: Build Orchestration",
-      "status": "WARNING",
-      "message": "Unbalanced parentheses: 248 open, 250 close"
+      "status": "PASSED",
+      "message": "Valid Scheme structure"
     },
     {
       "test": "phase5-end-to-end-integration.scm",
@@ -129,7 +129,7 @@
       "document": "README.md",
       "description": "Main project documentation",
       "status": "COMPLETE",
-      "size": 11957
+      "size": 12706
     },
     {
       "document": "docs/AGI_OS_OVERVIEW.md",
@@ -165,7 +165,7 @@
       "document": "cogkernel/README.md",
       "description": "Cognitive kernel documentation",
       "status": "COMPLETE",
-      "size": 5551
+      "size": 6347
     },
     {
       "document": "cogkernel/tests/README.md",
@@ -175,11 +175,11 @@
     }
   ],
   "coverage_metrics": {
-    "total_tests": 34,
-    "implementation_files": 50,
-    "c_implementation_files": 4,
-    "test_coverage_ratio": 0.68,
-    "coverage_percentage": 68.0,
+    "total_tests": 38,
+    "implementation_files": 51,
+    "c_implementation_files": 6,
+    "test_coverage_ratio": 0.7450980392156863,
+    "coverage_percentage": 74.50980392156863,
     "module_coverage": {
       "atomspace": true,
       "agents": true,

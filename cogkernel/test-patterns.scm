@@ -402,9 +402,9 @@
   ;; Verify overall integrity
   (let ((integrity-verified? (verify-cognitive-integrity)))
     (generate-test-report)
-    
+
     (format #t "~%=== TEST SUITE COMPLETED ===~%")
     (format #t "Cognitive System Integrity: ~a~%"
-            (if integrity-verified? "✅ VERIFIED" "❌ COMPROMISED")))))
-    
-    integrity-verified?))
+            (if integrity-verified? "✅ VERIFIED" "❌ COMPROMISED"))
+
+    integrity-verified?))))

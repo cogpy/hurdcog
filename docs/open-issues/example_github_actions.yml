@@ -51,7 +51,16 @@ print(f'Catalog valid: {catalog["metadata"]["total_issues"]} issues')
     - name: Test major_open_issues issues
       run: |
         echo "Testing 7 issues in category: major_open_issues"
-        # TODO: Add actual tests for major_open_issues issues
+        python3 -c "
+import json
+with open('docs/open-issues/test-catalog.json', 'r') as f:
+    catalog = json.load(f)
+issues = catalog['test_catalog'].get('major_open_issues', [])
+for issue in issues:
+    assert 'cognitive_grammar_hooks' in issue
+    assert 'ggml_kernel_shapes' in issue
+print(f'Validated {len(issues)} major_open_issues')
+"
         
     - name: Generate issue status report
       run: |
@@ -74,7 +83,16 @@ print(f'Catalog valid: {catalog["metadata"]["total_issues"]} issues')
     - name: Test technical issues
       run: |
         echo "Testing 6 issues in category: technical"
-        # TODO: Add actual tests for technical issues
+        python3 -c "
+import json
+with open('docs/open-issues/test-catalog.json', 'r') as f:
+    catalog = json.load(f)
+issues = catalog['test_catalog'].get('technical', [])
+for issue in issues:
+    assert 'cognitive_grammar_hooks' in issue
+    assert 'ggml_kernel_shapes' in issue
+print(f'Validated {len(issues)} technical issues')
+"
         
     - name: Generate issue status report
       run: |
@@ -97,7 +115,16 @@ print(f'Catalog valid: {catalog["metadata"]["total_issues"]} issues')
     - name: Test development issues
       run: |
         echo "Testing 7 issues in category: development"
-        # TODO: Add actual tests for development issues
+        python3 -c "
+import json
+with open('docs/open-issues/test-catalog.json', 'r') as f:
+    catalog = json.load(f)
+issues = catalog['test_catalog'].get('development', [])
+for issue in issues:
+    assert 'cognitive_grammar_hooks' in issue
+    assert 'ggml_kernel_shapes' in issue
+print(f'Validated {len(issues)} development issues')
+"
         
     - name: Generate issue status report
       run: |
@@ -120,7 +147,16 @@ print(f'Catalog valid: {catalog["metadata"]["total_issues"]} issues')
     - name: Test implementation issues
       run: |
         echo "Testing 4 issues in category: implementation"
-        # TODO: Add actual tests for implementation issues
+        python3 -c "
+import json
+with open('docs/open-issues/test-catalog.json', 'r') as f:
+    catalog = json.load(f)
+issues = catalog['test_catalog'].get('implementation', [])
+for issue in issues:
+    assert 'cognitive_grammar_hooks' in issue
+    assert 'ggml_kernel_shapes' in issue
+print(f'Validated {len(issues)} implementation issues')
+"
         
     - name: Generate issue status report
       run: |
@@ -143,7 +179,16 @@ print(f'Catalog valid: {catalog["metadata"]["total_issues"]} issues')
     - name: Test performance issues
       run: |
         echo "Testing 5 issues in category: performance"
-        # TODO: Add actual tests for performance issues
+        python3 -c "
+import json
+with open('docs/open-issues/test-catalog.json', 'r') as f:
+    catalog = json.load(f)
+issues = catalog['test_catalog'].get('performance', [])
+for issue in issues:
+    assert 'cognitive_grammar_hooks' in issue
+    assert 'ggml_kernel_shapes' in issue
+print(f'Validated {len(issues)} performance issues')
+"
         
     - name: Generate issue status report
       run: |
@@ -166,16 +211,47 @@ print(f'Catalog valid: {catalog["metadata"]["total_issues"]} issues')
     - name: Test cognitive grammar hooks
       run: |
         echo "Testing cognitive grammar integration hooks"
-        # TODO: Add tests for AtomSpace integration
-        # TODO: Add tests for attention allocation
-        # TODO: Add tests for inference rules
-        
+        python3 -c "
+import json
+with open('docs/open-issues/test-catalog.json', 'r') as f:
+    catalog = json.load(f)
+for category, issues in catalog['test_catalog'].items():
+    for issue in issues:
+        hooks = issue.get('cognitive_grammar_hooks', {})
+        # AtomSpace integration test
+        assert 'concept_nodes' in hooks, 'Missing concept_nodes'
+        # Attention allocation test
+        attention = hooks.get('attention_allocation', {})
+        assert 0 <= attention.get('priority', 0) <= 1
+        # Inference rules test
+        for rule in hooks.get('inference_rules', []):
+            assert 'confidence' in rule
+        break
+print('Cognitive grammar hooks validated')
+"
+
     - name: Test GGML kernel shapes
       run: |
         echo "Testing GGML kernel shape specifications"
-        # TODO: Add tensor shape validation
-        # TODO: Add memory layout tests
-        # TODO: Add kernel operation tests
+        python3 -c "
+import json
+with open('docs/open-issues/test-catalog.json', 'r') as f:
+    catalog = json.load(f)
+for category, issues in catalog['test_catalog'].items():
+    for issue in issues:
+        ggml = issue.get('ggml_kernel_shapes', {})
+        # Tensor shape validation
+        for name, shape in ggml.get('tensor_shapes', {}).items():
+            assert isinstance(shape, list)
+        # Memory layout test
+        for cache in ggml.get('memory_layout', []):
+            assert 'cache' in cache and 'size' in cache
+        # Kernel operation test
+        for op in ggml.get('kernel_operations', []):
+            assert all(k in op for k in ['op', 'input_shape', 'output_shape'])
+        break
+print('GGML kernel shapes validated')
+"
 
   generate-report:
     runs-on: ubuntu-latest
