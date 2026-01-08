@@ -230,5 +230,4 @@
   (let loop ((i 0))
     (when (< i count)
       (proc i)
-      (loop (+ i 1)))))
-      (loop (+ i 1)))))
+      (loop (+ i 1))))))
