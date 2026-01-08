@@ -16,8 +16,14 @@ hurdcog/
 │   ├── attention.scm    # ECAN attention allocation
 │   ├── cognitive-grip.scm  # 5-finger cognitive grip mechanism
 │   ├── machspace.scm    # Distributed hypergraph for Mach
+│   ├── aten-tensors.scm # ATen tensor operations
+│   ├── atenspace.scm    # ATenSpace neural-symbolic bridge
 │   ├── tests/           # Test suite
 │   └── examples/        # Example implementations
+├── tensorfs/            # Tensor-Enhanced FileSystem
+│   ├── tensorfs.scm     # Scheme implementation
+│   ├── tensorfs.c       # C implementation
+│   └── tensorfs.h       # C header
 ├── lib*/                # GNU Hurd libraries (C)
 ├── ext2fs/, tmpfs/, etc # Filesystem implementations
 ├── proc/, exec/, init/  # Core Hurd servers
@@ -93,6 +99,9 @@ cd cogkernel
 | PLN | Probabilistic Logic Networks for reasoning |
 | GNU Guile | Scheme implementation for cognitive code |
 | GNU Guix | Declarative package management |
+| ATen | C++11 tensor library for neural computation |
+| ATenSpace | Neural-symbolic bridge (AtomSpace + tensors) |
+| TensorFS | Tensor-enhanced intelligent filesystem |
 
 ## Code Style
 
@@ -154,7 +163,11 @@ Hardware
 |------|---------|
 | `cogkernel/hurdcog-bootstrap.scm` | Minimal bootstrap implementation |
 | `cogkernel/atomspace.scm` | Core hypergraph data structure |
+| `cogkernel/aten-tensors.scm` | ATen tensor operations |
+| `cogkernel/atenspace.scm` | Neural-symbolic bridge |
 | `cogkernel/hurd-atomspace-bridge.c` | C bridge to Hurd |
+| `tensorfs/tensorfs.scm` | TensorFS Scheme implementation |
+| `tensorfs/tensorfs.c` | TensorFS C implementation |
 | `Makefile` | Main build configuration |
 | `configure.ac` | Autoconf configuration |
 | `run-phase6-tests.py` | Comprehensive test runner |
@@ -167,6 +180,7 @@ Hardware
 - `docs/OPENCOG_HURD_INTEGRATION.md` - Technical architecture
 - `docs/COGNITIVE_SERVICES_API.md` - Developer API guide
 - `cogkernel/README.md` - Cognitive kernel details
+- `tensorfs/README.md` - TensorFS documentation
 - `DEVELOPMENT_ROADMAP.md` - Project roadmap
 
 ## Phase Documentation
